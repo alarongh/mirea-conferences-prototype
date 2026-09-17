@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Поиск — конференции РТУ МИРЭА</title>
+  <meta name="description" content="Глобальный поиск по конференциям, событиям, докладам, участникам и документам.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232357c6'/%3E%3Cpath d='M8 9h16v3H8zm0 6h16v3H8zm0 6h10v3H8z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/tokens.css"><link rel="stylesheet" href="assets/css/core.css"><link rel="stylesheet" href="assets/css/layout.css"><link rel="stylesheet" href="assets/css/components.css">
+  <script src="assets/js/data.js" defer></script><script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">К содержанию</a><div data-site-header data-current="search"></div>
+  <main class="site-main" id="content">
+    <div class="container breadcrumbs"><nav aria-label="Хлебные крошки"><ol><li><a href="index.html">Главная</a></li><li aria-current="page">Поиск</li></ol></nav></div>
+    <header class="page-header"><div class="container"><p class="eyebrow">По всему порталу</p><h1>Поиск</h1><p class="lead">Ищите по названию конференции, фамилии докладчика, теме доклада, событию или документу.</p></div></header>
+    <section class="page-section"><div class="container">
+      <form class="search-form" role="search" data-search-page-form>
+        <div><label class="visually-hidden" for="search-query">Поисковый запрос</label><input class="search-input" id="search-query" type="search" data-search-page-query placeholder="Например, архив или Романько" autocomplete="off"></div>
+        <div><label class="visually-hidden" for="search-type">Тип результата</label><select class="search-input" id="search-type" data-search-page-type><option value="all">Все типы</option><option value="Конференция">Конференции</option><option value="Событие">События</option><option value="Секция">Секции</option><option value="Доклад">Доклады</option><option value="Материал">Материалы</option></select></div>
+        <button class="button" type="submit">Найти</button>
+      </form>
+      <div class="section-heading"><h2>Результаты</h2><p class="meta" data-search-page-count aria-live="polite"></p></div>
+      <div class="search-results" data-search-page-results aria-live="polite"></div>
+    </div></section>
+  </main>
+  <div data-site-footer></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конференции — РТУ МИРЭА</title>
+  <meta name="description" content="Каталог конференций одной из кафедр РТУ МИРЭА.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232357c6'/%3E%3Cpath d='M8 9h16v3H8zm0 6h16v3H8zm0 6h10v3H8z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/tokens.css"><link rel="stylesheet" href="assets/css/core.css"><link rel="stylesheet" href="assets/css/layout.css"><link rel="stylesheet" href="assets/css/components.css">
+  <script src="assets/js/data.js" defer></script><script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">К содержанию</a><div data-site-header data-current="conferences"></div>
+  <main class="site-main" id="content">
+    <header class="page-header"><div class="container"><p class="eyebrow">Каталог</p><h1>Конференции</h1><p class="lead">Актуальные и завершённые мероприятия кафедры. Карточки рассчитаны на длинные названия, разные форматы и неполные данные.</p></div></header>
+    <section class="page-section" data-filter-scope aria-labelledby="conference-list-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="conference-list-title">Список конференций</h2>
+        <div class="filters" data-filter-group aria-label="Фильтр по году">
+          <button class="filter-button" type="button" data-filter-value="all" aria-pressed="true">Все</button>
+          <button class="filter-button" type="button" data-filter-value="2026" aria-pressed="false">2026</button>
+          <button class="filter-button" type="button" data-filter-value="2025" aria-pressed="false">2025</button>
+          <button class="filter-button" type="button" data-filter-value="upcoming" aria-pressed="false">Предстоящие</button>
+        </div>
+        <div class="grid grid--2">
+          <article class="card card--link conference-card" data-filter-item data-tags="2026 complete">
+            <div><p class="conference-card__year">2026</p><span class="status status--complete">Завершена</span></div>
+            <div><h2 class="conference-card__title"><a href="conference-detail.html">Документы войны и Победы</a></h2><p class="meta">18–22 мая · РТУ МИРЭА · очно и онлайн</p><div class="cluster"><span class="tag">6 секций</span><span class="tag">Резолюция</span></div></div>
+          </article>
+          <article class="card card--link conference-card" data-filter-item data-tags="2025 complete">
+            <div><p class="conference-card__year">2025</p><span class="status status--complete">В архиве</span></div>
+            <div><h2 class="conference-card__title"><a href="archive.html#year-2025">Материалы конференции ноября 2025</a></h2><p class="meta">25–27 ноября · РТУ МИРЭА · очно и онлайн</p><div class="cluster"><span class="tag">Круглый стол</span><span class="tag">6 секций</span></div></div>
+          </article>
+        </div>
+        <div class="empty-state" data-filter-empty hidden><h2>Конференций нет</h2><p>В выбранной категории пока нет опубликованных мероприятий.</p></div>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
+</body>
+</html>
