@@ -28,7 +28,7 @@
           <div class="container site-header__inner">
             <a class="brand" href="index.html" aria-label="На главную">
               <span class="brand__mark" aria-hidden="true">РТУ</span>
-              <span>Конференции<span class="brand__sub">кафедра РТУ МИРЭА</span></span>
+              <span>Конференции<span class="brand__sub">кафедра истории и документоведения</span></span>
             </a>
             <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-nav">Меню</button>
             <nav class="site-nav" id="site-nav" data-site-nav aria-label="Основная навигация">
@@ -65,7 +65,10 @@
               </ul>
             </nav>
           </div>
-          <div class="container"><p class="meta">© <span data-current-year></span> РТУ МИРЭА · Учебный frontend-прототип</p></div>
+          <div class="container">
+            <p class="meta">© <span data-current-year></span> Кафедра истории и документоведения РТУ МИРЭА</p>
+            <p class="site-footer__signature">fronted by alaron</p>
+          </div>
         </footer>`;
     }
 
