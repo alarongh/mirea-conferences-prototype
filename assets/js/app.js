@@ -2,6 +2,65 @@
   "use strict";
 
   const index = window.PORTAL_SEARCH_INDEX || [];
+  const themes = {
+    foundation: {
+      label: "Editorial Tech",
+      note: "Тёмный цифровой журнал",
+      href: "assets/css/theme-foundation.css"
+    },
+    archive: {
+      label: "Archive Paper",
+      note: "Печатный каталог и архив",
+      href: "assets/css/theme-archive.css"
+    },
+    signal: {
+      label: "Signal Grid",
+      note: "Яркая модульная система",
+      href: "assets/css/theme-signal.css"
+    }
+  };
+
+  function getThemeKey() {
+    const requested = new URLSearchParams(window.location.search).get("theme");
+    if (requested && themes[requested]) return requested;
+    try {
+      const saved = window.localStorage.getItem("conference-theme");
+      if (saved && themes[saved]) return saved;
+    } catch (_) {
+      // The selected theme still works through the URL when storage is unavailable.
+    }
+    return "foundation";
+  }
+
+  function applyTheme(key, options = {}) {
+    const selected = themes[key] || themes.foundation;
+    const stylesheet = document.querySelector("#site-theme") || document.querySelector('link[href*="theme-"]');
+    if (stylesheet) {
+      stylesheet.id = "site-theme";
+      stylesheet.href = selected.href;
+    }
+    document.documentElement.dataset.theme = themes[key] ? key : "foundation";
+    if (options.persist) {
+      try {
+        window.localStorage.setItem("conference-theme", key);
+      } catch (_) {
+        // URL state remains the fallback.
+      }
+    }
+    if (options.updateUrl) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("theme", key);
+      window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+    }
+    document.querySelectorAll("[data-theme-option]").forEach((button) => {
+      const active = button.dataset.themeOption === key;
+      button.setAttribute("aria-pressed", String(active));
+    });
+    const themeButton = document.querySelector("[data-open-theme]");
+    if (themeButton) themeButton.textContent = `Тема · ${Object.keys(themes).indexOf(key) + 1}`;
+  }
+
+  applyTheme(getThemeKey(), { persist: true });
   const normalize = (value) => String(value || "").toLocaleLowerCase("ru-RU").trim();
   const escapeHtml = (value) => String(value)
     .replaceAll("&", "&amp;")
@@ -34,6 +93,7 @@
             <nav class="site-nav" id="site-nav" data-site-nav aria-label="Основная навигация">
               ${navItems.map(([key, label, href]) => `<a href="${href}"${current === key ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
               <button class="icon-button" type="button" data-open-search aria-label="Открыть поиск">Поиск</button>
+              <button class="theme-button" type="button" data-open-theme aria-label="Выбрать визуальную тему">Тема</button>
             </nav>
           </div>
         </header>`;
@@ -89,6 +149,49 @@
           </div>
         </dialog>`);
     }
+
+    if (!document.querySelector("#theme-overlay")) {
+      document.body.insertAdjacentHTML("beforeend", `
+        <dialog class="theme-dialog" id="theme-overlay" aria-labelledby="theme-overlay-title">
+          <div class="theme-dialog__header">
+            <div>
+              <p class="eyebrow">Визуальные направления</p>
+              <h2 id="theme-overlay-title">Выберите тему</h2>
+            </div>
+            <button class="icon-button" type="button" data-close-theme aria-label="Закрыть выбор темы">Закрыть</button>
+          </div>
+          <div class="theme-options">
+            ${Object.entries(themes).map(([key, theme], indexOfTheme) => `
+              <button class="theme-option theme-option--${key}" type="button" data-theme-option="${key}" aria-pressed="false">
+                <span class="theme-option__index">0${indexOfTheme + 1}</span>
+                <strong>${theme.label}</strong>
+                <span>${theme.note}</span>
+              </button>`).join("")}
+          </div>
+          <p class="theme-dialog__hint">Выбранный вариант сохраняется при переходе между страницами. Ссылка в адресной строке открывает именно эту тему.</p>
+        </dialog>`);
+    }
+  }
+
+  function initThemeDialog() {
+    const dialog = document.querySelector("#theme-overlay");
+    if (!dialog) return;
+    const closeButton = dialog.querySelector("[data-close-theme]");
+    const close = () => dialog.close();
+    document.querySelectorAll("[data-open-theme]").forEach((button) => {
+      button.addEventListener("click", () => dialog.showModal());
+    });
+    closeButton && closeButton.addEventListener("click", close);
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) close();
+    });
+    dialog.querySelectorAll("[data-theme-option]").forEach((button) => {
+      button.addEventListener("click", () => {
+        applyTheme(button.dataset.themeOption, { persist: true, updateUrl: true });
+        close();
+      });
+    });
+    applyTheme(getThemeKey());
   }
 
   function searchItems(query, type) {
@@ -245,6 +348,7 @@
         const next = new URLSearchParams();
         if (input.value.trim()) next.set("q", input.value.trim());
         if (type && type.value !== "all") next.set("type", type.value);
+        next.set("theme", document.documentElement.dataset.theme || "foundation");
         history.replaceState(null, "", `${window.location.pathname}${next.toString() ? `?${next}` : ""}`);
       }
     };
@@ -264,6 +368,7 @@
   }
 
   renderShell();
+  initThemeDialog();
   initMobileMenu();
   initSearchDialog();
   initFilters();
