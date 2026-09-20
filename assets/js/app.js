@@ -17,6 +17,21 @@
       label: "Signal Grid",
       note: "Яркая модульная система",
       href: "assets/css/theme-signal.css"
+    },
+    axis: {
+      label: "Axis Rail",
+      note: "Вертикальная навигация и плакатная ось",
+      href: "assets/css/theme-axis.css"
+    },
+    cloud: {
+      label: "Cloud Atelier",
+      note: "Мягкие слои и свободное пространство",
+      href: "assets/css/theme-cloud.css"
+    },
+    nocturne: {
+      label: "Nocturne Stage",
+      note: "Тёмная сценическая афиша",
+      href: "assets/css/theme-nocturne.css"
     }
   };
 

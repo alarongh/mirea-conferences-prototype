@@ -195,6 +195,8 @@ a {
 
 .theme-dialog {
   width: min(62rem, calc(100% - 1.25rem));
+  max-height: calc(100vh - 1.25rem);
+  overflow-y: auto;
   padding: clamp(1.25rem, 4vw, 3rem);
   border: 1px solid #465564;
   border-radius: 0;
@@ -244,14 +246,19 @@ a {
   padding: 1.25rem;
   border: 0;
   border-right: 1px solid #465564;
+  border-bottom: 1px solid #465564;
   color: inherit;
   background: #101b27;
   text-align: left;
   cursor: pointer;
 }
 
-.theme-option:last-child {
+.theme-option:nth-child(3n) {
   border-right: 0;
+}
+
+.theme-option:nth-last-child(-n + 3) {
+  border-bottom: 0;
 }
 
 .theme-option:hover,
@@ -288,6 +295,18 @@ a {
 
 .theme-option--signal::before {
   background: linear-gradient(90deg, #dfff00 0 62%, #2e36ff 62% 82%, #ff4b18 82%);
+}
+
+.theme-option--axis::before {
+  background: linear-gradient(90deg, #e43d2f 0 28%, #f5efe3 28% 76%, #2748e9 76%);
+}
+
+.theme-option--cloud::before {
+  background: linear-gradient(90deg, #dff6ff 0 50%, #7567ff 50% 76%, #4ed8b0 76%);
+}
+
+.theme-option--nocturne::before {
+  background: linear-gradient(90deg, #09070e 0 58%, #c7a66a 58% 78%, #8f2f65 78%);
 }
 
 .theme-option strong {
@@ -1193,6 +1212,14 @@ a {
   .theme-option {
     min-height: 8rem;
     border-right: 0;
+    border-bottom: 1px solid #465564;
+  }
+
+  .theme-option:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .theme-option:nth-last-child(-n + 3) {
     border-bottom: 1px solid #465564;
   }
 
