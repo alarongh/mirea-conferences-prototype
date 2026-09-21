@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" id="site-theme" href="assets/css/theme-foundation.css">
-  <script src="assets/js/data.js" defer></script>
-  <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/data.js?v=3" defer></script>
+  <script src="assets/js/app.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#content">К содержанию</a>
@@ -21,21 +21,24 @@
   <main class="site-main" id="content">
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__grid">
-        <div>
-          <p class="eyebrow">Последняя конференция · завершена</p>
-          <h1 class="hero__title" id="hero-title">Документы войны и Победы</h1>
-          <p class="lead hero__summary">Всероссийская научно-практическая конференция: пленарные заседания, круглый стол, шесть тематических секций и итоговая резолюция.</p>
+        <div class="hero__content">
+          <p class="eyebrow" data-conference-field="eyebrow">Всероссийская научно-практическая конференция</p>
+          <h1 class="hero__title" id="hero-title" data-conference-field="title">Документы войны и Победы</h1>
+          <p class="lead hero__summary" data-conference-field="summary">Источники, интерпретации и современные исследования исторической памяти.</p>
           <div class="cluster">
             <a class="button" href="program.html">Открыть программу</a>
             <a class="button button--secondary" href="conference-detail.html">О конференции</a>
           </div>
         </div>
         <dl class="hero__meta info-list">
-          <div><dt>Даты</dt><dd>18–22 мая 2026</dd></div>
-          <div><dt>Площадка</dt><dd>РТУ МИРЭА · Москва</dd></div>
-          <div><dt>Формат</dt><dd>Очно и онлайн</dd></div>
-          <div><dt>Статус</dt><dd><span class="status status--complete">Завершена</span></dd></div>
+          <div><dt>Даты</dt><dd data-conference-field="dates">18–22 мая 2026</dd></div>
+          <div><dt>Площадка</dt><dd><span data-conference-field="venue">РТУ МИРЭА</span> · <span data-conference-field="location">Москва</span></dd></div>
+          <div><dt>Формат</dt><dd data-conference-field="format">Очно и онлайн</dd></div>
+          <div><dt>Статус</dt><dd><span class="status status--complete" data-conference-field="status">Завершена</span></dd></div>
         </dl>
+        <figure class="hero__art" aria-hidden="true">
+          <img src="assets/images/editorial-field.png" alt="" width="1536" height="1024">
+        </figure>
       </div>
     </section>
 

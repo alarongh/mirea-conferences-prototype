@@ -4,8 +4,8 @@
   const index = window.PORTAL_SEARCH_INDEX || [];
   const themes = {
     foundation: {
-      label: "Editorial Tech",
-      note: "Тёмный цифровой журнал",
+      label: "Editorial Field",
+      note: "Редакционная афиша без сюжетных клише",
       href: "assets/css/theme-foundation.css"
     },
     archive: {
@@ -83,6 +83,23 @@
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+
+  function hydrateConference() {
+    const conference = window.PORTAL_CURRENT_CONFERENCE;
+    if (!conference) return;
+    document.querySelectorAll("[data-conference-field]").forEach((node) => {
+      const key = node.dataset.conferenceField;
+      if (Object.hasOwn(conference, key) && conference[key] != null) {
+        node.textContent = String(conference[key]);
+      }
+    });
+    const title = document.querySelector(".hero__title[data-conference-field='title']");
+    if (title) {
+      const length = String(conference.title || "").trim().length;
+      title.classList.toggle("is-long", length > 38 && length <= 58);
+      title.classList.toggle("is-extra-long", length > 58);
+    }
+  }
 
   function renderShell() {
     const headerTarget = document.querySelector("[data-site-header]");
@@ -382,6 +399,7 @@
     });
   }
 
+  hydrateConference();
   renderShell();
   initThemeDialog();
   initMobileMenu();

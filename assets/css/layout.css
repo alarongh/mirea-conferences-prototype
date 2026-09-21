@@ -98,6 +98,11 @@
   max-width: 35rem;
 }
 
+.hero__art {
+  display: none;
+  margin: 0;
+}
+
 .hero__meta {
   display: grid;
   gap: var(--space-4);

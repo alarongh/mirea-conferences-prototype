@@ -10,7 +10,7 @@
 
 Все темы используют одну HTML-структуру и переключаются кнопкой «Тема» в шапке или параметром `theme` в URL:
 
-- `?theme=foundation` — Editorial Tech (`assets/css/theme-foundation.css`)
+- `?theme=foundation` — Editorial Field (`assets/css/theme-foundation.css`)
 - `?theme=archive` — Archive Paper (`assets/css/theme-archive.css`)
 - `?theme=signal` — Signal Grid (`assets/css/theme-signal.css`)
 - `?theme=axis` — Axis Rail (`assets/css/theme-axis.css`)
@@ -18,3 +18,5 @@
 - `?theme=nocturne` — Nocturne Stage (`assets/css/theme-nocturne.css`)
 
 Выбор сохраняется в браузере при переходе между страницами.
+
+Контент главного экрана хранится в `window.PORTAL_CURRENT_CONFERENCE` внутри `assets/js/data.js`. Заголовок, описание, даты, площадка, формат и статус выводятся в универсальный компонент без привязки декоративной графики к названию конференции. При переносе в Django эти поля заменяются значениями модели без изменения HTML-структуры.
