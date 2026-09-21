@@ -4,9 +4,9 @@
   const index = window.PORTAL_SEARCH_INDEX || [];
   const themes = {
     foundation: {
-      label: "Editorial Field",
-      note: "Редакционная афиша без сюжетных клише",
-      href: "assets/css/theme-foundation.css?v=3"
+      label: "Editorial Tech",
+      note: "Тёмный цифровой журнал",
+      href: "assets/css/theme-foundation.css?v=5"
     },
     archive: {
       label: "Archive Paper",
@@ -32,6 +32,11 @@
       label: "Nocturne Stage",
       note: "Тёмная сценическая афиша",
       href: "assets/css/theme-nocturne.css"
+    },
+    editorial: {
+      label: "Editorial Field",
+      note: "Читаемая редакционная афиша",
+      href: "assets/css/theme-editorial.css?v=1"
     }
   };
 
@@ -71,8 +76,11 @@
       const active = button.dataset.themeOption === key;
       button.setAttribute("aria-pressed", String(active));
     });
-    const themeButton = document.querySelector("[data-open-theme]");
-    if (themeButton) themeButton.textContent = `Тема · ${Object.keys(themes).indexOf(key) + 1}`;
+    document.querySelectorAll("[data-open-theme]").forEach((themeButton) => {
+      themeButton.textContent = themeButton.classList.contains("theme-button--compact")
+        ? "Темы"
+        : `Темы · ${Object.keys(themes).indexOf(key) + 1}`;
+    });
   }
 
   applyTheme(getThemeKey(), { persist: true });
@@ -121,11 +129,14 @@
               <span class="brand__mark" aria-hidden="true">РТУ</span>
               <span>Конференции<span class="brand__sub">кафедра истории и документоведения</span></span>
             </a>
-            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-nav">Меню</button>
+            <div class="site-header__mobile-actions">
+              <button class="theme-button theme-button--compact" type="button" data-open-theme aria-label="Выбрать визуальную тему">Темы</button>
+              <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-nav">Меню</button>
+            </div>
             <nav class="site-nav" id="site-nav" data-site-nav aria-label="Основная навигация">
               ${navItems.map(([key, label, href]) => `<a href="${href}"${current === key ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
               <button class="icon-button" type="button" data-open-search aria-label="Открыть поиск">Поиск</button>
-              <button class="theme-button" type="button" data-open-theme aria-label="Выбрать визуальную тему">Тема</button>
+              <button class="theme-button" type="button" data-open-theme aria-label="Выбрать визуальную тему">Темы</button>
             </nav>
           </div>
         </header>`;

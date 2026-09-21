@@ -82,6 +82,15 @@
   display: none;
 }
 
+.site-header__mobile-actions,
+.theme-button--compact {
+  display: none;
+}
+
+html .theme-option--editorial::before {
+  background: #c52519;
+}
+
 .button {
   display: inline-flex;
   min-height: 2.8rem;
@@ -629,6 +638,18 @@
 }
 
 @media (max-width: 60rem) {
+  .site-header__mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .theme-button--compact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .menu-button {
     display: inline-flex;
   }
