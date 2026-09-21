@@ -6,7 +6,7 @@
     foundation: {
       label: "Editorial Field",
       note: "Редакционная афиша без сюжетных клише",
-      href: "assets/css/theme-foundation.css"
+      href: "assets/css/theme-foundation.css?v=3"
     },
     archive: {
       label: "Archive Paper",
