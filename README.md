@@ -17,6 +17,7 @@
 - `?theme=cloud` — Cloud Atelier (`assets/css/theme-cloud.css`)
 - `?theme=nocturne` — Nocturne Stage (`assets/css/theme-nocturne.css`)
 - `?theme=editorial` — Editorial Field (`assets/css/theme-editorial.css`)
+- `?theme=elaya` — Elaya (`assets/css/theme-elaya.css`) · архивная афиша с гарнитурами Prata и Manrope
 
 Выбор сохраняется в браузере при переходе между страницами.
 

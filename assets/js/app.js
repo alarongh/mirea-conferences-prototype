@@ -37,15 +37,20 @@
       label: "Editorial Field",
       note: "Читаемая редакционная афиша",
       href: "assets/css/theme-editorial.css?v=1"
+    },
+    elaya: {
+      label: "Elaya",
+      note: "Архивная афиша: кобальт и шрифт с засечками",
+      href: "assets/css/theme-elaya.css?v=2"
     }
   };
 
   function getThemeKey() {
     const requested = new URLSearchParams(window.location.search).get("theme");
-    if (requested && themes[requested]) return requested;
+    if (requested && Object.hasOwn(themes, requested)) return requested;
     try {
       const saved = window.localStorage.getItem("conference-theme");
-      if (saved && themes[saved]) return saved;
+      if (saved && Object.hasOwn(themes, saved)) return saved;
     } catch (_) {
       // The selected theme still works through the URL when storage is unavailable.
     }
